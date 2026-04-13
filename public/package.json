@@ -1,0 +1,13 @@
+{
+  "name": "dakargo",
+  "version": "1.0.0",
+  "description": "DakarGo - Transport Sénégal",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve .",
+    "build": "echo 'No build step required'"
+  },
+  "keywords": ["senegal", "transport", "dakar", "whatsapp"],
+  "author": "DakarGo",
+  "license": "MIT"
+}

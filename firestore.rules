@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Bookings: anyone can write (anonymous log), nobody can read from client
+    match /bookings/{id} {
+      allow create: if
+        request.resource.data.keys().hasOnly(['route','time','ts']) &&
+        request.resource.data.route is string &&
+        request.resource.data.route.size() <= 80 &&
+        request.resource.data.time is string &&
+        request.resource.data.time.size() <= 10;
+      allow read: if false; // Admin SDK only
+      allow update, delete: if false;
+    }
+
+    // Block everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
